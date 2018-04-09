@@ -1,9 +1,9 @@
 import React from 'react';
 
-export class Weekly extends React.Component {
+export default class Weekly extends React.Component {
     render(){
       return (
-        <div>
+        <div className='page'>
         	weekly
         </div>
       );

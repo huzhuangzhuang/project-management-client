@@ -1,11 +1,10 @@
 import React from 'react';
 
-console.log('me');
 
-export class Me extends React.Component {
+export default class Me extends React.Component {
     render(){
       return (
-        <div>
+        <div className='page'>
         	me
         </div>
       );

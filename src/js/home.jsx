@@ -1,9 +1,9 @@
 import React from 'react';
 
-export class Home extends React.Component {
+export default class Home extends React.Component {
     render(){
       return (
-        <div>
+        <div className='page'>
         	<a href='http://baidu.com'>baidu</a>
         </div>
       );

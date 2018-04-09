@@ -15,20 +15,25 @@ import EagleEye from './eagle-eye.jsx';
 import Weekly from './weekly.jsx';
 import Team from './team.jsx';
 
+import '../style/index.less';
+
 class App extends Component {
   render() {
     return (
-      <div className='header'>
-        <ul>
-          <li><Link to="/">首页</Link></li>
-          <li><Link to="/project">项目</Link></li>
-          <li><Link to="/me">我的</Link></li>
-          <li><Link to="/eagle-eye">鹰眼</Link></li>
-          <li><Link to="/weekly">周报</Link></li>
-          <li><Link to="/team">团队</Link></li>
-        </ul>
-        {this.props.children}
-
+      <div className='wrapper'>
+        <div className='header'>
+          <ul>
+            <li><Link to="/">首页</Link></li>
+            <li><Link to="/project">项目</Link></li>
+            <li><Link to="/me">我的</Link></li>
+            <li><Link to="/eagle-eye">鹰眼</Link></li>
+            <li><Link to="/weekly">周报</Link></li>
+            <li><Link to="/team">团队</Link></li>
+          </ul>
+        </div>
+        <div className='container'>
+          {this.props.children}
+        </div>
       </div>
     );
   }
@@ -45,5 +50,5 @@ ReactDOM.render(
         <Route path="/team" component={Team} />
     </App>
   </HashRouter>),
-  document.getElementById('root')
+  document.body
 );

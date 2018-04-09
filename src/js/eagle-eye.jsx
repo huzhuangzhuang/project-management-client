@@ -1,9 +1,9 @@
 import React from 'react';
 
-export class EagleEye extends React.Component {
+export default class EagleEye extends React.Component {
     render(){
       return (
-        <div>
+        <div className='page'>
         	EagleEye
         </div>
       );

@@ -1,9 +1,9 @@
 import React from 'react';
 
-export class Team extends React.Component {
+export default class Team extends React.Component {
     render(){
       return (
-        <div>
+        <div className='page'>
         	team
         </div>
       );
