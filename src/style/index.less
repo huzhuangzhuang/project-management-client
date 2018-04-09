@@ -1,3 +1,36 @@
-.wrapper {
-	// background: red;
+* {
+	padding: 0;
+	margin: 0;
 }
+
+body{
+	background: #eee;
+	.wrapper {
+		.header {
+			border-bottom: solid 1px #000;
+
+			ul {
+				max-width: 1080px;
+		    margin: 0 auto;
+		    list-style: none;
+
+		    li {
+		    	display: inline-block;
+		    	padding: 20px;
+
+		    	a {
+		    		text-decoration: none;
+		    	}
+		    }
+			}
+		}
+
+		.container {
+			max-width: 1080px;
+		  margin: 20px auto;
+		  padding: 20px;
+		  background: #fff;
+		}
+	}
+}
+
