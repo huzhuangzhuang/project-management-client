@@ -18,5 +18,3 @@ npm run start
 
 npm run build
 ```
-
-13
