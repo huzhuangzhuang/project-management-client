@@ -1,6 +1,20 @@
-# Placeholder
+# project-management
 
-## 不知道要做些什么，先占个位，立个 flag：
+## 工作进度管理系统
 
-> 六月份之前弄个可以一看的玩意出来
 
+安装 `node` 之后执行下面的命令：
+
+```bash
+# 安装依赖
+
+npm i
+
+# 运行开发环境
+
+npm run start
+
+# 编译
+
+npm run build
+```
