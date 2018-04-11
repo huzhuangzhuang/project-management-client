@@ -23,6 +23,17 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {user: null, loading: true};
+    this.handleLogin = this.handleLogin.bind(this);
+  }
+
+  handleLogin() {
+    getUserInfo().then((userInfo) => {
+      if (userInfo) {
+        this.setState({
+          user: userInfo
+        });
+      }
+    });
   }
 
   componentDidMount() {
@@ -62,7 +73,7 @@ class App extends Component {
       } else {
         content = (
           <div className='wrapper'>
-          <Login />
+          <Login handler={this.handleLogin}/>
           </div>);
       }
     }
