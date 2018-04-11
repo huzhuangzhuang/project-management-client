@@ -15,29 +15,62 @@ import EagleEye from './eagle-eye.jsx';
 import Weekly from './weekly.jsx';
 import Team from './team.jsx';
 
+import {User, getUserInfo, Login} from './user.jsx';
+
 import '../style/index.less';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {user: null, loading: true};
+  }
+
+  componentDidMount() {
+    getUserInfo().then((userInfo) => {
+      if (userInfo) {
+        this.setState({
+          user: userInfo
+        });
+      }
+
+      this.setState({loading: false});
+    });
+  }
+
   render() {
-    return (
-      <div className='wrapper'>
-        <div className='header'>
-          <ul>
-            <li><Link to="/">首页</Link></li>
-            <li><Link to="/project">项目</Link></li>
-            <li><Link to="/me">我的</Link></li>
-            <li><Link to="/eagle-eye">鹰眼</Link></li>
-            <li><Link to="/weekly">周报</Link></li>
-            <li><Link to="/team">团队</Link></li>
-          </ul>
-        </div>
-        <div className='container'>
-          {this.props.children}
-        </div>
-      </div>
-    );
+    var content = (<div className='wrapper'></div>);
+
+    if (!this.state.loading) {
+      if (this.state.user) {
+        content = (
+          <div className='wrapper'>
+          <div className='header'>
+            <ul>
+              <li><Link to="/">首页</Link></li>
+              <li><Link to="/project">项目</Link></li>
+              <li><Link to="/me">我的</Link></li>
+              <li><Link to="/eagle-eye">鹰眼</Link></li>
+              <li><Link to="/weekly">周报</Link></li>
+              <li><Link to="/team">团队</Link></li>
+            </ul>
+          </div>
+          <div className='container'>
+            {this.props.children}
+          </div>
+          </div>
+        );
+      } else {
+        content = (
+          <div className='wrapper'>
+          <Login />
+          </div>);
+      }
+    }
+    
+    return content;
   }
 }
+
 
 ReactDOM.render(
   (<HashRouter>
