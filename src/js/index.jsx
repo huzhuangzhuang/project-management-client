@@ -20,65 +20,24 @@ import {User, getUserInfo, Login} from './user.jsx';
 import '../style/index.less';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {user: null, loading: true};
-    this.handleLogin = this.handleLogin.bind(this);
-  }
-
-  handleLogin() {
-    getUserInfo().then((userInfo) => {
-      if (userInfo) {
-        this.setState({
-          user: userInfo
-        });
-      }
-    });
-  }
-
-  componentDidMount() {
-    getUserInfo().then((userInfo) => {
-      if (userInfo) {
-        this.setState({
-          user: userInfo
-        });
-      }
-
-      this.setState({loading: false});
-    });
-  }
-
   render() {
-    var content = (<div className='wrapper'></div>);
-
-    if (!this.state.loading) {
-      if (this.state.user) {
-        content = (
-          <div className='wrapper'>
-          <div className='header'>
-            <ul>
-              <li><Link to="/">首页</Link></li>
-              <li><Link to="/project">项目</Link></li>
-              <li><Link to="/me">我的</Link></li>
-              <li><Link to="/eagle-eye">鹰眼</Link></li>
-              <li><Link to="/weekly">周报</Link></li>
-              <li><Link to="/team">团队</Link></li>
-            </ul>
-          </div>
-          <div className='container'>
-            {this.props.children}
-          </div>
-          </div>
-        );
-      } else {
-        content = (
-          <div className='wrapper'>
-          <Login handler={this.handleLogin}/>
-          </div>);
-      }
-    }
-    
-    return content;
+    return (
+      <div className='wrapper'>
+        <div className='header'>
+          <ul>
+            <li><Link to="/">首页</Link></li>
+            <li><Link to="/project">项目</Link></li>
+            <li><Link to="/me">我的</Link></li>
+            <li><Link to="/eagle-eye">鹰眼</Link></li>
+            <li><Link to="/weekly">周报</Link></li>
+            <li><Link to="/team">团队</Link></li>
+          </ul>
+        </div>
+        <div className='container'>
+          {this.props.children}
+        </div>
+        <Login />
+      </div>);
   }
 }
 

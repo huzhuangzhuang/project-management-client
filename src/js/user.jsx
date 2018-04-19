@@ -1,12 +1,10 @@
 import React from 'react';
-import ajax from './utils.js';
+import ajax from './utils.jsx';
 
-var hasLogin = false;
-
-export function getUserInfo(argument) {
+export function getUserInfo() {
 	return new Promise(function(resolve, reject) {
-		ajax().then(function(data) {
-			resolve(hasLogin);
+		ajax('/getUserInfo').then(function(data) {
+			resolve(true);
 		}, reject);
 	});
 }
@@ -15,6 +13,7 @@ export class Login extends React.Component {
 	constructor(props) {
     super(props);
     this.state = {
+    	show: false,
     	mode: 'login',
     	username: '',
     	password: '',
@@ -54,11 +53,34 @@ export class Login extends React.Component {
   }
 
   onSubmit() {
-  	hasLogin = true;
-  	this.props.handler();
+  }
+
+  componentDidMount() {
+  	var me = this;
+  	function doCheckUser() {
+  		getUserInfo().then((userInfo) => {
+  			if (userInfo) {
+  				me.setState({
+  					show: false
+  				});
+  			} else {
+  				me.setState({
+  					show: true
+  				});
+  			}
+  		});
+  	}
+
+  	doCheckUser();
+
+  	window.addEventListener('checkUser', doCheckUser);
   }
 
 	render() {
+		if (!this.state.show) {
+			return (<div className='hidden'></div>)
+		}
+
 		var content = null;
 
 		if (this.state.mode === 'login') {
@@ -84,7 +106,7 @@ export class Login extends React.Component {
 		}
 
 
-		return content;
+		return (<div className='login-mask'>{content}</div>);
 	}
 }
 
