@@ -16,13 +16,14 @@ import Weekly from './weekly.jsx';
 import Team from './team.jsx';
 
 import {User, getUserInfo, Login} from './user.jsx';
+import Msg from './utils.jsx';
 
 import '../style/index.less';
 
 class App extends Component {
   render() {
     return (
-      <div className='wrapper'>
+      <React.Fragment>
         <div className='header'>
           <ul>
             <li><Link to="/">首页</Link></li>
@@ -34,11 +35,12 @@ class App extends Component {
             
           </ul>
         </div>
+        <Msg />
         <div className='container'>
           {this.props.children}
         </div>
         <Login />
-      </div>);
+      </React.Fragment>);
   }
 }
 
@@ -54,5 +56,5 @@ ReactDOM.render(
         <Route path="/team" component={Team} />
     </App>
   </HashRouter>),
-  document.body
+  document.getElementById('wrapper')
 );

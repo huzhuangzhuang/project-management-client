@@ -1,11 +1,14 @@
 import React from 'react';
-import ajax from './utils.jsx';
+import {ajax} from './utils.jsx';
 
 export function getUserInfo() {
 	return new Promise(function(resolve, reject) {
 		ajax('/getUserInfo').then(function(data) {
 			resolve(true);
-		}, reject);
+		}, function(e) {
+			reject(e);
+		});
+		// resolve(true);
 	});
 }
 
@@ -68,6 +71,10 @@ export class Login extends React.Component {
   					show: true
   				});
   			}
+  		}, () => {
+  			me.setState({
+					show: true
+				});
   		});
   	}
 
@@ -78,7 +85,7 @@ export class Login extends React.Component {
 
 	render() {
 		if (!this.state.show) {
-			return (<div className='hidden'></div>)
+			return null;
 		}
 
 		var content = null;
